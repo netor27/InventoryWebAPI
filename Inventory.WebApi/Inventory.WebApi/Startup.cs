@@ -65,6 +65,14 @@ namespace Inventory.WebApi
 
             app.UseStatusCodePages();
 
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Entities.Product, Models.ProductDto>();
+                cfg.CreateMap<Entities.ProductCategory, Models.ProductCategoryDto>();
+                cfg.CreateMap<Models.ProductDto, Entities.Product>();
+                cfg.CreateMap<Models.ProductCategoryDto, Entities.ProductCategory>();
+            });
+
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Swagger;
 
 using NLog.Extensions.Logging;
+using NLog.Web;
 
 using Inventory.WebApi.Services;
 using Inventory.WebApi.Entities;
 using Inventory.WebApi.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace Inventory.WebApi
 {
@@ -24,6 +26,7 @@ namespace Inventory.WebApi
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
+            env.ConfigureNLog("nlog.config");
             Configuration = builder.Build();
         }
 
@@ -40,6 +43,7 @@ namespace Inventory.WebApi
             });
 
             var connectionString = Configuration["connectionStrings:inventoryInfoDBConnectionString"];
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<ProductInfoContext>(o => o.UseSqlServer(connectionString));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
@@ -51,6 +55,7 @@ namespace Inventory.WebApi
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
             loggerFactory.AddNLog();
+            app.AddNLogWeb();
 
             if (env.IsDevelopment())
             {
@@ -71,6 +76,7 @@ namespace Inventory.WebApi
                 cfg.CreateMap<Entities.ProductCategory, Models.ProductCategoryDto>();
                 cfg.CreateMap<Models.ProductDto, Entities.Product>();
                 cfg.CreateMap<Models.ProductCategoryDto, Entities.ProductCategory>();
+                cfg.CreateMap<Models.ProductCategoryForPostDto, Entities.ProductCategory>();
             });
 
             app.UseMvc();

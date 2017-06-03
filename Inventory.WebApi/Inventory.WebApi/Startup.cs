@@ -11,6 +11,7 @@ using NLog.Extensions.Logging;
 
 using Inventory.WebApi.Services;
 using Inventory.WebApi.Entities;
+using Inventory.WebApi.Extensions;
 
 namespace Inventory.WebApi
 {
@@ -45,11 +46,24 @@ namespace Inventory.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ProductInfoContext context)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole();
             loggerFactory.AddDebug();
             loggerFactory.AddNLog();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler();
+            }
+
+            context.EnsureSeedDataForContext();
+
+            app.UseStatusCodePages();
 
             app.UseMvc();
             app.UseSwagger();

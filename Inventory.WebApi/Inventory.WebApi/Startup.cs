@@ -3,10 +3,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 using Swashbuckle.AspNetCore.Swagger;
 
 using NLog.Extensions.Logging;
+
+using Inventory.WebApi.Services;
+using Inventory.WebApi.Entities;
 
 namespace Inventory.WebApi
 {
@@ -33,6 +37,11 @@ namespace Inventory.WebApi
             {
                 c.SwaggerDoc("v1", new Info { Title = "Inventory API", Version = "v1" });
             });
+
+            var connectionString = Configuration["connectionStrings:inventoryInfoDBConnectionString"];
+            services.AddDbContext<ProductInfoContext>(o => o.UseSqlServer(connectionString));
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

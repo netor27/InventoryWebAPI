@@ -1,7 +1,6 @@
-﻿using Inventory.WebApi.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace CityInfo.API.Entities
+namespace Inventory.WebApi.Entities
 {
     public class ProductInfoContext : DbContext
     { 

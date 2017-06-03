@@ -1,2 +1,2 @@
 # InventoryWebAPI
-Web API to manage shops and their products inventory
+Web API to manage shop inventory and it's employees

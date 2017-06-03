@@ -37,11 +37,11 @@ namespace Inventory.UnitTests.IntegrationTests
 
             AutoMapper.Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<WebApi.Entities.Product, WebApi.Models.ProductDto>();
-                cfg.CreateMap<WebApi.Entities.ProductCategory, WebApi.Models.ProductCategoryDto>();
-                cfg.CreateMap<WebApi.Models.ProductDto, WebApi.Entities.Product>();
-                cfg.CreateMap<WebApi.Models.ProductCategoryDto, WebApi.Entities.ProductCategory>();
-                cfg.CreateMap<WebApi.Models.ProductCategoryForPostDto, WebApi.Entities.ProductCategory>();
+                cfg.CreateMap<Product, ProductDto>();
+                cfg.CreateMap<ProductCategory, ProductCategoryDto>();
+                cfg.CreateMap<ProductDto, Product>();
+                cfg.CreateMap<ProductCategoryDto, ProductCategory>();
+                cfg.CreateMap<ProductCategoryForPostDto, ProductCategory>();
             });
         }
 

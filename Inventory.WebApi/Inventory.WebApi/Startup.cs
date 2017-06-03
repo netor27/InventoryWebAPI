@@ -14,6 +14,7 @@ using Inventory.WebApi.Services;
 using Inventory.WebApi.Entities;
 using Inventory.WebApi.Extensions;
 using Microsoft.AspNetCore.Http;
+using Inventory.WebApi.Models;
 
 namespace Inventory.WebApi
 {
@@ -72,11 +73,11 @@ namespace Inventory.WebApi
 
             AutoMapper.Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Entities.Product, Models.ProductDto>();
-                cfg.CreateMap<Entities.ProductCategory, Models.ProductCategoryDto>();
-                cfg.CreateMap<Models.ProductDto, Entities.Product>();
-                cfg.CreateMap<Models.ProductCategoryDto, Entities.ProductCategory>();
-                cfg.CreateMap<Models.ProductCategoryForPostDto, Entities.ProductCategory>();
+                cfg.CreateMap<Product, ProductDto>();
+                cfg.CreateMap<ProductCategory, ProductCategoryDto>();
+                cfg.CreateMap<ProductDto, Product>();
+                cfg.CreateMap<ProductCategoryDto, ProductCategory>();
+                cfg.CreateMap<ProductCategoryForPostDto, ProductCategory>();
             });
 
             app.UseMvc();

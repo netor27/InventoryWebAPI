@@ -1,17 +1,13 @@
-﻿using System;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace Inventory.UnitTests.Stubs
 {
     public class StubLogger<T> : ILogger<T>
     {
-        public void Log(LogLevel logLevel, int eventId, object state, Exception exception, Func<object, Exception, string> formatter)
+        public IDisposable BeginScope<TState>(TState state)
         {
-        }
-
-        public bool IsEnabled(LogLevel logLevel)
-        {
-            return false;
+            return null;
         }
 
         public IDisposable BeginScopeImpl(object state)
@@ -19,13 +15,17 @@ namespace Inventory.UnitTests.Stubs
             return null;
         }
 
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
-        {            
+        public bool IsEnabled(LogLevel logLevel)
+        {
+            return false;
         }
 
-        public IDisposable BeginScope<TState>(TState state)
+        public void Log(LogLevel logLevel, int eventId, object state, Exception exception, Func<object, Exception, string> formatter)
         {
-            return null;
+        }
+
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        {
         }
     }
 }

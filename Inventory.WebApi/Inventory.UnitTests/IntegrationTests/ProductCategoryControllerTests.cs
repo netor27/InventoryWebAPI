@@ -47,7 +47,7 @@ namespace Inventory.UnitTests.IntegrationTests
         {
             // Arrange
             var controller = new ProductCategoriesController(_logger, _repository);
-            var originalElement = GetValidProductCategoryDto(controller);
+            var originalElement = ValidDataHelper.GetValidProductCategoryDto(controller);
 
             // Act
             var result = controller.Delete(originalElement.Id);
@@ -76,7 +76,7 @@ namespace Inventory.UnitTests.IntegrationTests
         {
             // Arrange
             var controller = new ProductCategoriesController(_logger, _repository);
-            var originalElement = GetValidProductCategoryDto(controller);
+            var originalElement = ValidDataHelper.GetValidProductCategoryDto(controller);
 
             // Act
             var result = controller.GetProductCategory(originalElement.Id);
@@ -131,7 +131,7 @@ namespace Inventory.UnitTests.IntegrationTests
         {
             // Arrange
             var controller = new ProductCategoriesController(_logger, _repository);
-            var originalElement = GetValidProductCategoryDto(controller);
+            var originalElement = ValidDataHelper.GetValidProductCategoryDto(controller);
             originalElement.Name = $"UpdatedValue for Id={originalElement.Id}";
             var updatedValue = new ProductCategoryForPostDto() { Name = originalElement.Name };
             
@@ -144,14 +144,6 @@ namespace Inventory.UnitTests.IntegrationTests
             // Asset
             result.Should().BeOfType<NoContentResult>();
             retrievedValue.ShouldBeEquivalentTo(originalElement);            
-        }
-
-        private ProductCategoryDto GetValidProductCategoryDto(ProductCategoriesController controller)
-        {
-            var result = controller.GetProductCategories();
-            var listResult = result.ValidateResponseAndCastTo<List<ProductCategoryDto>, OkObjectResult>((int)HttpStatusCodes.Ok);
-            listResult.Any().Should().BeTrue();
-            return listResult.First();
         }
     }
 }

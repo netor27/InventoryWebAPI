@@ -16,6 +16,8 @@ namespace Inventory.Tests.ClassFixtures
                 cfg.CreateMap<ProductCategoryDto, ProductCategory>();
                 cfg.CreateMap<ProductForPostDto, Product>();
                 cfg.CreateMap<ProductCategoryForPostDto, ProductCategory>();
+                cfg.CreateMap<ProductForPostDto, ProductDto>();
+                cfg.CreateMap<ProductCategoryForPostDto, ProductCategoryDto>();
             });
         }
 

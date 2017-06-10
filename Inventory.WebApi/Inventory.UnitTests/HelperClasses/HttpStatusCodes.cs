@@ -3,7 +3,8 @@
     public enum HttpStatusCodes
     {
         Ok = 200,
-        BadRequest = 401,
+        Created = 201,
+        BadRequest = 400,
         InternalServerError = 501
     }
 }

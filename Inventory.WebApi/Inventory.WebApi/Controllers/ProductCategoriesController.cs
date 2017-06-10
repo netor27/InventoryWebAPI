@@ -45,7 +45,8 @@ namespace Inventory.WebApi.Controllers
                     return StatusCode(500, "A problem happened while handling your request.");
                 }
 
-                return CreatedAtRoute("GetProductCategory", new { id = productCategory.Id }, productCategory);
+                var productCategoryDtoResult = Mapper.Map<ProductCategoryDto>(productCategory);
+                return CreatedAtRoute("GetProductCategory", new { id = productCategoryDtoResult.Id }, productCategoryDtoResult);
             }
             catch (Exception ex)
             {
@@ -128,11 +129,6 @@ namespace Inventory.WebApi.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (!_productCategoryRepository.ProductCategoryExists(id))
-            {
-                return NotFound();
             }
 
             var productCategoryEntity = _productCategoryRepository.GetProductCategory(id);

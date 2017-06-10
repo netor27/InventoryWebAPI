@@ -1,14 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Inventory.WebApi.Entities
+namespace Inventory.WebApi.Models
 {
-    public class Product
+    public class ProductForPostDto
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(200)]
         public string Image { get; set; }
@@ -18,14 +13,13 @@ namespace Inventory.WebApi.Entities
         public string Name { get; set; }
 
         [Required]
+        [Range(0.1, double.MaxValue, ErrorMessage = "Price must be a positive number")]
         public double Price { get; set; }
-
-        [ForeignKey("ProductCategoryId")]
-        public ProductCategory ProductCategory { get; set; }
 
         public int ProductCategoryId { get; set; }
 
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Stock Amount must be a positive number")]
         public int StockAmount { get; set; }
     }
 }

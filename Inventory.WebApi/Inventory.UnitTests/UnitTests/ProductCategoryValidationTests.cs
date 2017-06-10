@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using GenFu;
+using Inventory.Tests.ClassFixtures;
 using Inventory.WebApi.Controllers;
 using Inventory.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,7 @@ using Xunit;
 
 namespace Inventory.Tests.UnitTests
 {
-    public class ProductCategoryValidationTests
+    public class ProductCategoryValidationTests : IClassFixture<ProductCategoryFixture>, IClassFixture<AutoMapperFixture>
     {
         [Fact]
         public void When_adding_a_product_category_as_a_null_value_it_should_return_a_bad_request_code()

@@ -1,4 +1,3 @@
-using AutoMapper;
 using FluentAssertions;
 using GenFu;
 using Inventory.Tests.ClassFixtures;
@@ -15,15 +14,15 @@ using Xunit;
 
 namespace Inventory.UnitTests.IntegrationTests
 {
-    public class ProductCategoryControllerTests : IClassFixture<ProductCategoryFixture>
+    public class ProductCategoryControllerTests : IClassFixture<ProductCategoryFixture>, IClassFixture<ProductCategoryRepositoryFixture>, IClassFixture<AutoMapperFixture>
     {
         private static ILogger<ProductCategoriesController> _logger;
 
         private IProductCategoryRepository _repository;
 
-        public ProductCategoryControllerTests(ProductCategoryFixture productCategoryFixture)
+        public ProductCategoryControllerTests(ProductCategoryFixture productCategoryFixture, ProductCategoryRepositoryFixture productCategoryRepositoryFixture)
         {
-            _repository = productCategoryFixture.Repository;
+            _repository = productCategoryRepositoryFixture.Repository;
             _logger = new StubLogger<ProductCategoriesController>();
         }
 

@@ -77,6 +77,7 @@ namespace Inventory.WebApi
                 cfg.CreateMap<ProductCategory, ProductCategoryDto>();
                 cfg.CreateMap<ProductDto, Product>();
                 cfg.CreateMap<ProductCategoryDto, ProductCategory>();
+                cfg.CreateMap<ProductForPostDto, Product>();
                 cfg.CreateMap<ProductCategoryForPostDto, ProductCategory>();
             });
 

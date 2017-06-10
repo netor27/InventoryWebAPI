@@ -22,10 +22,12 @@ namespace Inventory.UnitTests.Stubs
 
         public void Log(LogLevel logLevel, int eventId, object state, Exception exception, Func<object, Exception, string> formatter)
         {
+            Console.WriteLine($"{logLevel} {state} {exception}");
         }
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
+            Console.WriteLine($"{logLevel} {state} {exception}");
         }
     }
 }

@@ -8,9 +8,10 @@ using Inventory.WebApi.Entities;
 namespace Inventory.WebApi.Migrations
 {
     [DbContext(typeof(ProductInfoContext))]
-    partial class ProductInfoContextModelSnapshot : ModelSnapshot
+    [Migration("20170610181108_changingDecimalToDouble")]
+    partial class changingDecimalToDouble
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

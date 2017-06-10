@@ -42,6 +42,7 @@ namespace Inventory.WebApi.Controllers
 
                 if (!_productCategoryRepository.Save())
                 {
+                    _logger.LogCritical($"Exception while adding a new product category.");
                     return StatusCode(500, "A problem happened while handling your request.");
                 }
 

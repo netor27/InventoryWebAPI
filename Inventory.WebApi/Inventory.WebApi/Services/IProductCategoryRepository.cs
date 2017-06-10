@@ -5,13 +5,13 @@ namespace Inventory.WebApi.Services
 {
     public interface IProductCategoryRepository
     {
-        ProductCategory GetProductCategory(int productCategoryId);
-
-        IEnumerable<ProductCategory> GetProductCategories();
-
         void AddProductCategory(ProductCategory productCategory);
 
         void DeleteProductCategory(ProductCategory productCategory);
+
+        IEnumerable<ProductCategory> GetProductCategories();
+
+        ProductCategory GetProductCategory(int productCategoryId);
 
         bool ProductCategoryExists(int productCategoryId);
 

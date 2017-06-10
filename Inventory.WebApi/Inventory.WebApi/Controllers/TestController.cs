@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Inventory.WebApi.Entities;
+﻿using Inventory.WebApi.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory.WebApi.Controllers
 {
@@ -17,6 +17,6 @@ namespace Inventory.WebApi.Controllers
         public IActionResult Get()
         {
             return Ok();
-        }        
+        }
     }
 }

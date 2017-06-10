@@ -5,17 +5,16 @@ namespace Inventory.WebApi.Services
 {
     public interface IProductRepository
     {
-        Product GetProduct(int productId);
-
-        IEnumerable<Product> GetProducts();
-
         void AddProduct(Product product);
 
         void DeleteProduct(Product product);
 
+        Product GetProduct(int productId);
+
+        IEnumerable<Product> GetProducts();
+
         bool ProductExists(int productId);
 
         bool Save();
-
     }
 }

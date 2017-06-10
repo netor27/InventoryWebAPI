@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Inventory.WebApi.Entities;
+using System.Collections.Generic;
 using System.Linq;
-using Inventory.WebApi.Entities;
 
 namespace Inventory.WebApi.Services
 {
